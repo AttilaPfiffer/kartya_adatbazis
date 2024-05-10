@@ -12,14 +12,15 @@
 <body>
     <?php
         $adatbazis = new Adatbazis();
+        $adatbazis->torlesForma('7');
         //lekérdezések:
         /*$matrix = $adatbazis->adatLeker("kep", "szin");
         $adatbazis->megjelenit($matrix);*/
-        $matrix = $adatbazis->adatLeker2("nev", "kep", "szin");
-        $adatbazis->megjelenit($matrix);
-        if ($adatbazis->rekordokSzama("kartya") == 0) {
+        //$matrix = $adatbazis->adatLeker2("nev", "kep", "szin");
+        /*$adatbazis->megjelenit($matrix);
+        if ($adatbazis->rekordokSzama("kartyak") == 0) {
             $adatbazis->kartyaFeltolt();
-        }
+        }*/
         $adatbazis->kapcsoltBezar();
     ?>
 </body>

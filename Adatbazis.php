@@ -4,7 +4,7 @@ class Adatbazis {
     private $host = "localhost";
     private $felhasznaloNev = "root";
     private $jelszo = "";
-    private $adatbazis = "magyarkartya";
+    private $adatbazis = "kartya";
     private $kapcsolat;
     //konstruktor
     public function __construct()
@@ -61,6 +61,21 @@ class Adatbazis {
                 $sql = "INSERT INTO kartya(szinAzon, formaAzon) VALUES ('$szinIndex','$formaIndex')";
                 $this->kapcsolat->query($sql);
             }
+        }
+    }
+    public function torlesForma($forma){
+        $sql = "DELETE FROM kartyak
+        WHERE formaAzon IN
+        (SELECT formaAzon FROM forma
+        WHERE szoveg = '$forma')";
+        return $this->kapcsolat->query($sql);
+    }
+
+    public function beszurForma($forma){
+        $szam = $this->rekordokSzama("szín");
+        for ($i=1; $i < $szam; $i++) { 
+            $sql = "INSERT INTO kartyak(szinAzon, formaAzon) VALUES ('1','$forma')";
+            $this->kapcsolat->query($sql);
         }
     }
     public function kapcsoltBezar(){
